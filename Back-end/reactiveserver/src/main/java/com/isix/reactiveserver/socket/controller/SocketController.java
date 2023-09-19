@@ -17,8 +17,6 @@ import java.io.IOException;
 @RequestMapping("/api")
 public class SocketController {
     private final MultiSocketHandler multiSocketHandler;
-
-
     @PostMapping("/session/make")
     public ResponseEntity makeSession(@RequestBody SocketDto.SendInfo requestBody) throws IOException {
         System.out.println(requestBody.toString());
