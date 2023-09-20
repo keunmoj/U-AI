@@ -1,7 +1,7 @@
+import torch
 from django.http import FileResponse
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.decorators import api_view
-from django.http import JsonResponse
 from ultralytics import YOLO
 import cv2
 import numpy as np
@@ -10,6 +10,13 @@ import uuid
 import requests
 import json
 
+"""
+    문제점 : 첫 호출 때 gpu를 불러오는데 시간이 소모되기 때문에 응답시간이 길었다.
+    해결 : 전역적으로 모델을 불러와서 더미데이터에 대한 ai 호출을 한다. -> 첫 요청에서도 빠르게 응답을 뱉어냄 
+"""
+source = 'media/jpg/아기.jpg'
+model = YOLO("C:\\Users\\SSAFY\\S09P22E104\\Back-end\\pythonserver\\whiteBoard_v8l.pt")
+model.predict(source)
 
 @api_view(['POST'])
 @csrf_exempt
@@ -17,8 +24,6 @@ def review(request):
     upload_file = request.FILES['file']
     image_data = upload_file.read() # .read() 함수를 통해 이미지를 바이트 형식으로 읽어온다.
 
-    # 모델 불러오기
-    model = load_yolo_model()
     # 이미지 전처리(화이트 보드 인식, 화이트 보드 제외한 부분 흰색으로 처리)
     output_path = image_preprocessing(model, image_data)
     # 저장된 이미지 파일을 읽어서 HttpResponse로 반환
@@ -27,19 +32,16 @@ def review(request):
 
     return response
 
-def load_yolo_model():
-    model = YOLO("C:\\Users\\SSAFY\\S09P22E104\\Back-end\\pythonserver\\whiteBoard_v8l.pt")
-    return model
 
 def image_preprocessing(model, image_data):
     input_image = cv2.imdecode(np.frombuffer(image_data, np.uint8), -1)  # 바이너리 이미지 데이터를 읽습니다.
-    # classes=[63, 67]
-    # Run inference on the source
+
+    print(torch.cuda.is_available())
+    # GPU를 활용해야할 듯
     start = int(time.time() * 1000)  # 현재 시간을 밀리초로 변환
     results = model.predict(input_image, conf=0.05)  # list of Results objects
     end = int(time.time() * 1000)
     print("화이트보드 객체 인식 시간 = ", end - start)
-    # rectangles = []
 
     height, width, _ = input_image.shape
     output_image = np.ones_like(input_image) * 255
