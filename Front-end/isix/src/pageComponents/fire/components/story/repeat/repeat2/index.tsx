@@ -17,26 +17,30 @@ const Repeat2: React.FC<WebcamProps> = ({ startStream, stopStream, videoElm, hid
   const [timer, setTimer] = useState<number>(0);
 
   // OCR
-  // const ocrEvent = async () => {
-  //   const url = "api/events/multiocr";
-  //   const sessionId = localStorage.getItem('socketId')
-  //   const data = {
-  //     sessionId: sessionId,
-  //     numChild: 1, // 처음에 입력받은 값 넣기
-  //   };
+  const ocrEvent = async () => {
+    const url = "api/events/multiocr";
+    const sessionId = localStorage.getItem('socketId')
+    const data = {
+      sessionId: sessionId,
+      numChild: 1, // 처음에 입력받은 값 넣기
+    };
 
-  //   try {
-  //     const response = await customAxios.post(url, data);
-  //     console.log(response.data); 
-  //   } catch (error) {
-  //     console.error('error', error);
-  //   }
-  // };
+    try {
+      const response = await customAxios.post(url, data);
+      console.log(response.data); 
+    } catch (error) {
+      console.error('error', error);
+    }
+  };
 
   useEffect(() => {
     const timeoutId = setTimeout(() => {
       setTimer(10);
     }, 3000);
+    
+    setTimeout(() => {
+      ocrEvent();
+    },7000)
 
     return () => clearTimeout(timeoutId);
   }, []);
