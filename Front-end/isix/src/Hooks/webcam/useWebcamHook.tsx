@@ -10,7 +10,7 @@ const useWebcam = (socketUrl: string, sendInterval: number) => {
   
   const webCamRef = useRef<Webcam|null>(null)
 
-  const [deviceId, setDeviceId] = useState("a1475e9070857c904dee1e006ed12528253ccdef36d56fbb5c28bb2a1fe1b56a");
+  const [deviceId, setDeviceId] = useState("6fd396708b9d3d8b883d4750f6778489d6765fa279e32057a47e4d9398cebcc9");
   const [devices, setDevices] = useState([]);
 
   const handleDevices = useCallback(
@@ -57,7 +57,7 @@ const useWebcam = (socketUrl: string, sendInterval: number) => {
 
     if(isStreaming){
       
-      navigator.mediaDevices.getUserMedia({ video: { deviceId: { exact: deviceId } } })
+      navigator.mediaDevices.getUserMedia({ video: { deviceId: { exact: deviceId }} })
         .then((stream) => {
           
           if (videoRef.current) {
