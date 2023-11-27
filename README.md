@@ -70,7 +70,7 @@
 
 - 학습 목표와 준비물을 포함한 표지를 통해 교육 시작 전 흥미를 유발합니다.
 
-<img title="" src="README/ox페이지.png" alt="ox" width="615">
+<img title="" src="README/ox페이지.JPEG" alt="ox" width="615">
 
 - 다중 객체 인식을 통해 사람 수를 파악하여 스토리를 진행합니다.
 
@@ -78,11 +78,11 @@
 
 - STT를 활용하여 아동이 소리를 외치면 정확도를 판단하여 다시 외치도록 유도하거나, 다음 페이지로 이동합니다.
 
-<img title="" src="README/모션인식페이지.png" alt="모션" width="615">
+<img title="" src="README/모션인식페이지.JPEG" alt="모션" width="615">
 
 - 판다의 동작을 따라하고, 정확도를 판단하여 정확한 동작을 하면 다음 페이지로 이동합니다.
 
-<img title="" src="README/ocr페이지.jpg" alt="ocr" width="615">
+<img title="" src="README/ocr페이지.JPEG" alt="ocr" width="615">
 
 - 퀴즈의 정답을 화이트보드에 작성하면, 이를 인식하여 몇 명이 정답을 맞혔는지 제공합니다.
 
@@ -90,7 +90,7 @@
 
 - 친근한 판다 캐릭터를 통해 아동들의 관심을 유도합니다.
 
-<img title="" src="README/캡처페이지.png" alt="캡처" width="615">
+<img title="" src="README/캡처페이지.JPEG" alt="캡처" width="615">
 
 - 활동 사진을 스토리 마지막에 제공하며, 클릭 시 사진 파일 다운로드가 가능합니다.
 
